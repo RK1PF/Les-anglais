@@ -16,3 +16,10 @@ Ouvrir le dossier du projet dans le terminal de laragon
 Mettre à jour le composer : composer self-update
 
 Construire le projet symfony : composer install
+
+
+
+Avant de créer la BDD, mettre à jour le fichier .env en changeant le port sur la ligne du phpmyadmin : DATABASE_URL="mysql://root@127.0.0.1:3306//Les-anglais?serverVersion=5.7"
+
+Puis dans le terminal tapez : php bin/console doctrine:database:create 
+
