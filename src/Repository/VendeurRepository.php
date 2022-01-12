@@ -18,7 +18,6 @@ class VendeurRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Vendeur::class);
     }
-
     // /**
     //  * @return Vendeur[] Returns an array of Vendeur objects
     //  */
