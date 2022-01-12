@@ -24,3 +24,10 @@ Procédure pour récupérer le projet :
 9/ Enfin, rentrez dans le terminal `php bin/console doctrine:migrations:migrate`
 
 10/ Pas de 10, c'est bon on peut commencer le projet
+
+
+PLUS TARD, EN COURS DE PROJET : 
+
+Création d'un controller : `php bin/console doctrine:make:controller EntitéController` en mettant le nom de l'entité à la place de "entité"
+
+Création de form : `php bin/console doctrine:make:form EntitéType Entité` en mettant le nom de l'entité à la place de "entité"
