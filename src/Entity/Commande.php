@@ -25,6 +25,10 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private $client;
 
+    #[ORM\ManyToOne(targetEntity: Commerce::class, inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $commerce;
+
     public function __construct()
     {
         $this->produitCommande = new ArrayCollection();
@@ -85,6 +89,18 @@ class Commande
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCommerce(): ?Commerce
+    {
+        return $this->commerce;
+    }
+
+    public function setCommerce(?Commerce $commerce): self
+    {
+        $this->commerce = $commerce;
 
         return $this;
     }

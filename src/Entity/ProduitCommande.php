@@ -21,6 +21,9 @@ class ProduitCommande
     #[ORM\JoinColumn(nullable: false)]
     private $commande;
 
+    #[ORM\Column(type: 'integer')]
+    private $quantite;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +49,18 @@ class ProduitCommande
     public function setCommande(?Commande $commande): self
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): self
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }
