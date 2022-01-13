@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Doctrine\ORM\EntityManagerInterface ;
 
-
 use App\Repository\ProduitRepository;
 use App\Entity\Produit;
 use App\Form\ProduitType;
@@ -20,10 +19,10 @@ class ProduitController extends AbstractController
     #[Route('/produit', name: 'produit')]
     public function index(ProduitRepository $repository): Response
     {
-        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        // $repository = $this->getDoctrine()->getRepository(Produit::class);
         $produit = $repository->findAll();
         return $this->render('produit/index.html.twig', [
-                'produit' => $produit,
+                'produits' => $produit,
             ]);
     }
 
@@ -33,9 +32,9 @@ class ProduitController extends AbstractController
         $produit = $pr->find($id);
         return $this->render('produit/afficherUnProduit.html.twig', ["produit"=>$produit]);
     }
-/*
-    #[Route("/modifproduit/{id}", name="modifproduit")]
-    #[Route("/creationproduit", name="creationproduit")]
+
+    #[Route("/modifproduit/{id}", name: "modifproduit")]
+    #[Route("/creationproduit", name: "creationproduit")]
 
     public function modifierProduit(Produit $produit=null, Request $request, EntityManagerInterface $em) {
         if (!$produit){
@@ -52,5 +51,5 @@ class ProduitController extends AbstractController
             "produit"=>$produit, 
             "form"=>$form->createView()
         ]);
-    } */
+    }
 }
