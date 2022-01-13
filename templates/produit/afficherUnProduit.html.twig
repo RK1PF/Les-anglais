@@ -30,11 +30,11 @@
 
 <section><h1>NOM DU PRODUIT</h1>
     <div class="image">
-    {# <img src="{{asset('images/produits/' ~ p.image )}}"> #}
+    <img src="{{asset('images/produits/' ~ produit.image )}}"> 
     Image</div>
     <div class="description"><p>Description
-    {# {{p.description}} #}
+    {{produit.description}}
     </p>
-        <h2>Prix  Quantité {# {{p.prix}} {{p.quantite}} #}</h2></div>
+        <h2>{{produit.prix}} {{produit.quantite}}</h2></div>
 </section>
 {% endblock %}
