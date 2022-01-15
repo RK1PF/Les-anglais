@@ -20,16 +20,18 @@ class TestingController extends AbstractController
     {
         return new Response("Res Testing Page");   
     }
-    #[Route(path:'/question/{slug}', name: 'question')]
+    #[Route(path:'/question/{slug}', name: 'question', methods: ['GET'])]
     public function show($slug)
-    {
+    {   
+        $question = ucfirst(str_replace('-', ' ', $slug));
         $answers = [
             "Peut-être avec la bouche mais sans les dents",
             "Sans la bouche mais avec les dents",
             "Par la pensée...🧠"
         ];
+        dump($question, $answers);
         return $this->render('testing/question.html.twig', [
-            'question' => ucfirst(str_replace('-', ' ', $slug)),
+            'question' => $question,
             'answers' => $answers
         ]);
     }

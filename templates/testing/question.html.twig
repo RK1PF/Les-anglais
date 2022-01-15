@@ -4,24 +4,15 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		h1,h2 {
-			text-align: center;
-		}
-		.big {
-			text-align: center;
-			font-size: 3em;
-		}
-	</style>
-	<div class="example-wrapper">
-		<h1>❔ La question du moment ❓</h1>
-		<p class="big">{{question}}
-			?</p>
-		<h2>Réponses</h2>
-        <ul>
-            {% for i in answers %}
-                <li><p class="big">{{i}}</p></li>
-            {% endfor %}
-        </ul>
-	</div>
+	<h1>La question du moment</h1>
+	<p>{{question}}
+		?</p>
+	<h2>Réponses</h2>
+	<ul>
+		{% for i in answers %}
+			<li>
+				<p>{{i}}</p>
+			</li>
+		{% endfor %}
+	</ul>
 {% endblock %}
