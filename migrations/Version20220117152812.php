@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220112123241 extends AbstractMigration
+final class Version20220117152812 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -28,9 +28,8 @@ final class Version20220112123241 extends AbstractMigration
         $this->addSql('CREATE TABLE commerce (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, siren VARCHAR(255) DEFAULT NULL, adresse VARCHAR(255) DEFAULT NULL, ville VARCHAR(255) DEFAULT NULL, logo VARCHAR(255) DEFAULT NULL, description VARCHAR(255) DEFAULT NULL, banniere VARCHAR(255) DEFAULT NULL, code_postal INT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE email (id INT AUTO_INCREMENT NOT NULL, client_id INT DEFAULT NULL, association_id INT DEFAULT NULL, vendeur_id INT DEFAULT NULL, email VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_E7927C7419EB6921 (client_id), UNIQUE INDEX UNIQ_E7927C74EFB9C8A5 (association_id), UNIQUE INDEX UNIQ_E7927C74858C065E (vendeur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE photo_produit (id INT AUTO_INCREMENT NOT NULL, produit_id INT NOT NULL, lien VARCHAR(255) NOT NULL, date_ajout DATETIME NOT NULL, INDEX IDX_1C45FBAAF347EFB (produit_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE prix_produit (id INT AUTO_INCREMENT NOT NULL, produit_id INT NOT NULL, prix DOUBLE PRECISION NOT NULL, date_application DATETIME NOT NULL, INDEX IDX_A79730EDF347EFB (produit_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, stock INT NOT NULL, description VARCHAR(255) DEFAULT NULL, date_ajout DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE produit_commande (id INT AUTO_INCREMENT NOT NULL, produit_id INT NOT NULL, commande_id INT NOT NULL, INDEX IDX_47F5946EF347EFB (produit_id), INDEX IDX_47F5946E82EA2E54 (commande_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE produit (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, stock INT NOT NULL, description VARCHAR(255) DEFAULT NULL, date_ajout DATETIME NOT NULL, prix DOUBLE PRECISION NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE produit_commande (id INT AUTO_INCREMENT NOT NULL, produit_id INT NOT NULL, commande_id INT NOT NULL, prix DOUBLE PRECISION NOT NULL, quantite INT NOT NULL, INDEX IDX_47F5946EF347EFB (produit_id), INDEX IDX_47F5946E82EA2E54 (commande_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tags (id INT AUTO_INCREMENT NOT NULL, libelle VARCHAR(255) NOT NULL, date_ajout DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tags_produit (tags_id INT NOT NULL, produit_id INT NOT NULL, INDEX IDX_F1907368D7B4FB4 (tags_id), INDEX IDX_F190736F347EFB (produit_id), PRIMARY KEY(tags_id, produit_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE tel (id INT AUTO_INCREMENT NOT NULL, client_id INT DEFAULT NULL, association_id INT DEFAULT NULL, vendeur_id INT DEFAULT NULL, num BIGINT NOT NULL, UNIQUE INDEX UNIQ_F037AB0F19EB6921 (client_id), UNIQUE INDEX UNIQ_F037AB0FEFB9C8A5 (association_id), UNIQUE INDEX UNIQ_F037AB0F858C065E (vendeur_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -42,7 +41,6 @@ final class Version20220112123241 extends AbstractMigration
         $this->addSql('ALTER TABLE email ADD CONSTRAINT FK_E7927C74EFB9C8A5 FOREIGN KEY (association_id) REFERENCES association (id)');
         $this->addSql('ALTER TABLE email ADD CONSTRAINT FK_E7927C74858C065E FOREIGN KEY (vendeur_id) REFERENCES vendeur (id)');
         $this->addSql('ALTER TABLE photo_produit ADD CONSTRAINT FK_1C45FBAAF347EFB FOREIGN KEY (produit_id) REFERENCES produit (id)');
-        $this->addSql('ALTER TABLE prix_produit ADD CONSTRAINT FK_A79730EDF347EFB FOREIGN KEY (produit_id) REFERENCES produit (id)');
         $this->addSql('ALTER TABLE produit_commande ADD CONSTRAINT FK_47F5946EF347EFB FOREIGN KEY (produit_id) REFERENCES produit (id)');
         $this->addSql('ALTER TABLE produit_commande ADD CONSTRAINT FK_47F5946E82EA2E54 FOREIGN KEY (commande_id) REFERENCES commande (id)');
         $this->addSql('ALTER TABLE tags_produit ADD CONSTRAINT FK_F1907368D7B4FB4 FOREIGN KEY (tags_id) REFERENCES tags (id) ON DELETE CASCADE');
@@ -66,7 +64,6 @@ final class Version20220112123241 extends AbstractMigration
         $this->addSql('ALTER TABLE vendeur DROP FOREIGN KEY FK_7AF49996B09114B7');
         $this->addSql('ALTER TABLE categorie_produit DROP FOREIGN KEY FK_76264285F347EFB');
         $this->addSql('ALTER TABLE photo_produit DROP FOREIGN KEY FK_1C45FBAAF347EFB');
-        $this->addSql('ALTER TABLE prix_produit DROP FOREIGN KEY FK_A79730EDF347EFB');
         $this->addSql('ALTER TABLE produit_commande DROP FOREIGN KEY FK_47F5946EF347EFB');
         $this->addSql('ALTER TABLE tags_produit DROP FOREIGN KEY FK_F190736F347EFB');
         $this->addSql('ALTER TABLE tags_produit DROP FOREIGN KEY FK_F1907368D7B4FB4');
@@ -80,7 +77,6 @@ final class Version20220112123241 extends AbstractMigration
         $this->addSql('DROP TABLE commerce');
         $this->addSql('DROP TABLE email');
         $this->addSql('DROP TABLE photo_produit');
-        $this->addSql('DROP TABLE prix_produit');
         $this->addSql('DROP TABLE produit');
         $this->addSql('DROP TABLE produit_commande');
         $this->addSql('DROP TABLE tags');
