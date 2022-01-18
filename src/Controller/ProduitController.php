@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\PhotoProduit;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,9 +37,12 @@ class ProduitController extends AbstractController
     #[Route("/modifproduit/{id}", name: "modifproduit")]
     #[Route("/creationproduit", name: "creationproduit")]
 
-    public function modifierProduit(Produit $produit=null, Request $request, EntityManagerInterface $em) {
+    public function modifierProduit(?Produit $produit, ?PhotoProduit $photoProduit, Request $request, EntityManagerInterface $em) {
         if (!$produit){
             $produit=new Produit();
+        }
+        if (!$photoProduit){
+            $photoProduit=new PhotoProduit();
         }
         $form=$this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
@@ -49,6 +53,7 @@ class ProduitController extends AbstractController
         }
         return $this->render('produit/modifProduit.html.twig', [
             "produit"=>$produit, 
+            "photoProduit"=>$photoProduit,
             "form"=>$form->createView()
         ]);
     }

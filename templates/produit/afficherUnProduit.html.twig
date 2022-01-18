@@ -28,7 +28,7 @@
     }
 </style>
 
-<section><h1>NOM DU PRODUIT</h1>
+<section><h1>{{produit.nom}}</h1>
     <div class="image">
     {% for ph in produit.photoProduits %}
     <img src="{{asset('images/' ~ ph.lien )}}">
