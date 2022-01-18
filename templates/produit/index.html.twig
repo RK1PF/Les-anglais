@@ -28,9 +28,10 @@
 <section>
 {% for p in produits %}
 <div class="produit">
-<p>Image</p>
-{# <img src="{{asset('images/produits/' ~ p.photoProduits )}}"> #}
-<h2>{{p.prixProduits}} {{p.quantite}}</h2>
+{% for ph in p.photoProduits %}
+    <img src="{{asset('images/' ~ ph.lien )}}">
+{% endfor %}
+<h2>{{p.prix}} {{p.stock}}</h2>
 </div>
 {% endfor %}
 
