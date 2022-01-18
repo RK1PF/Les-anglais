@@ -31,7 +31,7 @@
 {% for ph in p.photoProduits %}
     <img src="{{asset('images/' ~ ph.lien )}}">
 {% endfor %}
-<h2>{{p.prix}} {{p.stock}}</h2>
+<h2>{{p.prix}} € | {{p.stock}}</h2>
 </div>
 {% endfor %}
 
