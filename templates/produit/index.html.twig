@@ -29,9 +29,9 @@
 {% for p in produits %}
 <div class="produit">
 {% for ph in p.photoProduits %}
-    <img src="{{asset('images/' ~ ph.lien )}}">
+    <a href="{{path('afficheproduit', {'id':p.id})}}"><img src="{{asset('images/' ~ ph.lien )}}"></a>
 {% endfor %}
-<h2>{{p.prix}} € | {{p.stock}}</h2>
+<h2>{{p.prix}} € | {{p.stock}} | Panier</h2>
 </div>
 {% endfor %}
 
