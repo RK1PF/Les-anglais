@@ -2,32 +2,33 @@
 
 namespace App\Form;
 
-use App\Entity\Commerce;
+use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class CommerceType extends AbstractType
+class ClientInscriptionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom')
-            ->add('siren')
+            ->add('prenom')
             ->add('adresse')
             ->add('ville')
-            ->add('logo')
-            ->add('description')
-            ->add('banniere')
             ->add('code_postal')
-            ->add('vendeur')
+            // ->add('tel')
+            // ->add('email')
+            ->add('password')
+            ->add('Enregistrer', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Commerce::class,
+            'data_class' => Client::class,
         ]);
     }
 }
