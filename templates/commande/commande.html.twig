@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        text-align:center;
+    }
+
+    div.titre {
+        border: solid #000;
+    }
+
+    section {
+        width:900px;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid #000;
+        display:inline-block;
+        padding: 4px;
+
+    }
+
+    .produit {
+        width:50%;
+        float:left;
+    }
+
+
+</style>
+<div id="titre">Votre panier</id>
+<section>
+{% for p in produits %}
+<div class="produit">
+{% for ph in p.photoProduits %}
+    <a href="{{path('afficheproduit', {'id':p.id})}}"><img src="{{asset('images/' ~ ph.lien )}}"></a>
+{% endfor %}
+<h2>{{p.prix}} € | {{p.stock}} | Panier</h2>
+</div>
+{% endfor %}
+
+</section>
+{% endblock %}
+

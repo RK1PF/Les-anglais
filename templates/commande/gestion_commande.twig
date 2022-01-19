@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commandes{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        text-align:center;
+    }
+
+    ul:first-child.li {
+        border: solid #000;
+    }
+
+    #commande {
+        border: solid #000;
+    }
+</style>
+<table>
+<ul><li>Numéro de commande</li>
+<li>date</li>
+<li>Coordonnées clients</li>
+<li>Total</li>
+<li>ACTION / prévenir client de dispo</li>
+</ul>
+
+{% for c in commande %}
+    {% if c.statut=="disponible" %}
+    <a href="{{path('commande', {'id':c.id})}}"><ul id="commande"><li id="commande">{{c.id}}</li>
+    <li id="commande">{{c.date_commande}}</li>
+    <li>
+    {% for cl in client %}
+        {% if cl.id = c.client %}
+        {{cl.prenom}} {{cl.nom}} {{cl.adresse}} {{cl.code_postal}} {{cl.ville}}
+        {% endif %}
+    {% endfor %}
+    </li>
+    <li>{{c.prix_total}}</li>
+    <li>
+    {% if c.date_retrait is null %}
+        <button>Limite de retrait</button>
+        {% else %}
+        {{c.date_retrait}} <button></button>
+    {% endif %}
+    {% else if c.statut=="" %}
+    {{c.date_retrait}} (MODIFIER)
+    {% endif %}
+    </li>
+    </ul></a>
+    {% endif %}
+{% endfor %}
+
+</table>
+{% endblock %}
+
+
