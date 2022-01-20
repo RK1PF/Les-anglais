@@ -29,17 +29,27 @@
 
 
 </style>
-<div id="titre">Votre panier</id>
+<div id="titre">VOTRE PANIER</div>
 <section>
-{% for p in produits %}
-<div class="produit">
-{% for ph in p.photoProduits %}
-    <a href="{{path('afficheproduit', {'id':p.id})}}"><img src="{{asset('images/' ~ ph.lien )}}"></a>
-{% endfor %}
-<h2>{{p.prix}} € | {{p.stock}} | Panier</h2>
-</div>
-{% endfor %}
+{% for pc in produitCommande %}
+    {% if produitCommande.commande==commande.id %}
+        <div class="produit">
+        {% for p in produit %}
+            {% if pc.produit==p.id %}
+                {% for ph in p.photoProduits %}
+                    <img src="{{asset('images/' ~ ph.lien )}}"></a>
+                {% endfor %}
+                <h2>{{p.nom}} | {{pc.quantite}} | {{pc.prix}} | {{pc.quantite * pc.prix}} €</h2>
+               {#  remplissage d'une liste avec sous_total+=pc.quantite*pc.prix et total+=pc.quantite*pc.prix*tva #}
+            {% endif %}
+        {% endfor %}
+        </div>
 
+    {% endif %}
+{% endfor %}
 </section>
+<div>sous-total | TVA | total <br/>
+<button>Retour à la boutique</button> <button>PAYER</button> <button>ANNULER</button></div>
+
 {% endblock %}
 
