@@ -32,7 +32,6 @@ class ClientController extends AbstractController
 
         $clientForm->handleRequest($request);
         if ($clientForm->isSubmitted() && $clientForm->isValid()) {
-            // dd($clientForm->getData());
             $em->persist($client);
             $em->flush();
             return $this->redirectToRoute('client');

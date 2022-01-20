@@ -22,7 +22,7 @@ class EmailToString implements DataTransformerInterface
     /**
      * Transforms an object (email) to a string.
      *
-     * @param  Email|null $email
+     * @param  Email $email
      */
     public function transform($email): string
     {
