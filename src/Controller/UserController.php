@@ -18,18 +18,18 @@ class UserController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $encoder): Response
     {
         $user = new Users();
-        $form = $this->createForm(UserInscriptionType::class,$user);
+        $form = $this->createForm(UserInscriptionType::class, $user);
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $passwordCrypte = $encoder->hashPassword($user,$user->getPassword());
+        if ($form->isSubmitted() && $form->isValid()) {
+            $passwordCrypte = $encoder->hashPassword($user, $user->getPassword());
             $user->setPassword($passwordCrypte);
             $em->persist($user);
             $em->flush();
             return $this->redirectToRoute("userInscription");
         }
 
-        return $this->render('user/inscription.html.twig',[
+        return $this->render('user/inscription.html.twig', [
             "form" => $form->createView()
         ]);
     }
@@ -38,18 +38,15 @@ class UserController extends AbstractController
     #[Route('/login', name: 'login')]
     public function login(AuthenticationUtils $util)
     {
-        return $this->render("admin_secu/login.html.twig",[
+        return $this->render("user/login.html.twig", [
             "lastUserName" => $util->getLastUsername(),
             "error" => $util->getLastAuthenticationError()
-        ]);     
+        ]);
     }
 
 
     #[Route('/deconnexion', name: 'deconnexion')]
     public function deconnexion()
     {
-            
     }
-
-
 }

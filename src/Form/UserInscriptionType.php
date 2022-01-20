@@ -13,10 +13,11 @@ class UserInscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('password')
+            
             ->add('nom')
             ->add('prenom')
             ->add('date_inscription')
+            ->add('password')
             ->add('password',PasswordType::class)
             ->add('verificationPassword',PasswordType::class)
         ;
