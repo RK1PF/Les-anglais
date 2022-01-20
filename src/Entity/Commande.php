@@ -25,6 +25,15 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private $client;
 
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $prix_total;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $statut;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $date_retrait;
+
     public function __construct()
     {
         $this->produitCommande = new ArrayCollection();
@@ -85,6 +94,42 @@ class Commande
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getPrixTotal(): ?float
+    {
+        return $this->prix_total;
+    }
+
+    public function setPrixTotal(?float $prix_total): self
+    {
+        $this->prix_total = $prix_total;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getDateRetrait(): ?\DateTimeInterface
+    {
+        return $this->date_retrait;
+    }
+
+    public function setDateRetrait(?\DateTimeInterface $date_retrait): self
+    {
+        $this->date_retrait = $date_retrait;
 
         return $this;
     }
