@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Entity\Email;
 use App\Form\ClientInscriptionType;
+use App\Form\EmailType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +18,7 @@ class ClientController extends AbstractController
     public function index(): Response
     {
         return $this->render('client/index.html.twig', [
-            'controller_name' => 'Pouet', 
+            'controller_name' => 'Pouet',
             'num' => 123,
         ]);
     }
@@ -25,21 +27,21 @@ class ClientController extends AbstractController
     public function clientInscription(?Client $client, Request $request, EntityManagerInterface $em): Response
     {
         $client = new Client();
-        
-        $form = $this->createForm(ClientInscriptionType::class, $client);
 
-        $form -> handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-         $em->persist($client);
-         $em->flush();
-         return $this->redirectToRoute('client');
+        $clientForm = $this->createForm(ClientInscriptionType::class, $client);
+
+        $clientForm->handleRequest($request);
+        if ($clientForm->isSubmitted() && $clientForm->isValid()) {
+            // dd($clientForm->getData());
+            $em->persist($client);
+            $em->flush();
+            return $this->redirectToRoute('client');
         }
 
         return $this->render('client/connexions/inscription.html.twig', [
             'controller_name' => 'ClientController',
             'client' => $client,
-            'form' => $form->createView(),
+            'clientForm' => $clientForm->createView(),
         ]);
     }
 }
