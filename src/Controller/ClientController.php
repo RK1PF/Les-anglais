@@ -27,18 +27,13 @@ class ClientController extends AbstractController
     public function clientInscription(?Client $client, Request $request, EntityManagerInterface $em): Response
     {
         $client = new Client();
-        $email = new Email();
 
         $clientForm = $this->createForm(ClientInscriptionType::class, $client);
-        $emailForm = $this->createForm(EmailType::class, $email);
-        $emailForm->setData(['client'=>$client]);
 
-        $emailForm->handleRequest($request);
         $clientForm->handleRequest($request);
-        if ($clientForm->isSubmitted() && $clientForm->isValid() && $emailForm->isSubmitted() && $emailForm->isValid()) {
+        if ($clientForm->isSubmitted() && $clientForm->isValid()) {
             // dd($clientForm->getData());
             $em->persist($client);
-            $em->persist($email);
             $em->flush();
             return $this->redirectToRoute('client');
         }
@@ -47,8 +42,6 @@ class ClientController extends AbstractController
             'controller_name' => 'ClientController',
             'client' => $client,
             'clientForm' => $clientForm->createView(),
-            'email' => $email,
-            'emailForm' => $emailForm->createView(),
         ]);
     }
 }
