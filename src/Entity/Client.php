@@ -39,6 +39,9 @@ class Client
     #[ORM\OneToOne(mappedBy: 'client', targetEntity: Email::class, cascade: ['persist', 'remove'])]
     private $email;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $password;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -179,6 +182,18 @@ class Client
         }
 
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }

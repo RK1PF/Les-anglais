@@ -132,6 +132,7 @@ class AppFixtures extends Fixture
             ->setPrenom($faker->firstName())
             ->setVille($faker->city())
             ->setAdresse($faker->address())
+            ->setPassword($faker->password())
             ->setCodePostal(intval($faker->postcode()))
             ->setTel($this->tel($faker, $manager, $client))
             ->setEmail($this->email($faker, $manager, $client));
