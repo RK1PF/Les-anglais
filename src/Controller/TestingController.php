@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestingController extends AbstractController
 {
+    // Ce contrôleur sert au test
     #[Route(path:'/', name: 'homepage')]
     public function home()
     {
@@ -20,10 +21,27 @@ class TestingController extends AbstractController
             'controller_name' => 'TestingController',
         ]);
     }
-    #[Route(path: '/testing/res', name: 'res-testing')]
-    public function res()
+
+    #[Route(path: '/testing/response', name: 'response-testing')]
+    public function testingResponse()
     {
-        return new Response("Res Testing Page");
+        return new Response("<h1>Res Testing Page</h1>");
+    }
+
+    #[Route(path: '/testing/json', name: 'json-testing')]
+    public function testingJson()
+    {
+        return $this->json([
+            "premier" => 1,
+            "second" => true,
+            "String" => "Ce string là",
+            "Res" => "Res Testing Page",
+            "Json" => ["test" => 1-1]
+        ],200,[
+            "premier" => 1000,
+            "second" => true,
+            "String" => "Ce string là"
+        ]);
     }
     #[Route(path: '/question/{slug}', name: 'question-show', methods: ['GET'])]
     public function show($slug)

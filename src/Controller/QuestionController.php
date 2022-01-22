@@ -8,14 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuestionController extends AbstractController
 {
-    #[Route('/question', name: 'question')]
-    public function index(): Response
-    {
-        return $this->render('question/index.html.twig', [
-            'controller_name' => 'QuestionController',
-        ]);
-    }
-
+    // Ajax
     #[Route(path: '/api/comment-vote/{direction<up|down>}/{commentId}', name: 'api-vote-comment', methods:'POST')]
     public function commentVote($commentId, $direction)
     {
