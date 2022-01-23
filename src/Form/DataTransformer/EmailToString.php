@@ -65,6 +65,7 @@ class EmailToString implements DataTransformerInterface
         } else {
             $email = new Email();
             $email->setEmail($emailString)->setClient($this->client);
+            // $this->client->setEmail($email);
             /*TODO: Création d'un nouvel email dans la base de données*/
         }
 

@@ -3,14 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Client;
-use App\Entity\Email;
 use App\Form\ClientInscriptionType;
-use App\Form\EmailType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class ClientController extends AbstractController
 {
@@ -24,7 +23,7 @@ class ClientController extends AbstractController
     }
 
     #[Route('/client/inscription', name: 'client-inscription')]
-    public function clientInscription(?Client $client, Request $request, EntityManagerInterface $em): Response
+    public function clientInscription(?Client $client, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $client = new Client();
 
@@ -32,6 +31,10 @@ class ClientController extends AbstractController
 
         $clientForm->handleRequest($request);
         if ($clientForm->isSubmitted() && $clientForm->isValid()) {
+            $passwordHasher->hashPassword(
+                $client,
+                $clientForm->get('plainPassword')->getData()
+            );
             $em->persist($client);
             $em->flush();
             return $this->redirectToRoute('client');
