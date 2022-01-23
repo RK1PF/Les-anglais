@@ -31,10 +31,15 @@ class ClientController extends AbstractController
 
         $clientForm->handleRequest($request);
         if ($clientForm->isSubmitted() && $clientForm->isValid()) {
-            $passwordHasher->hashPassword(
-                $client,
-                $clientForm->get('plainPassword')->getData()
-            );
+            // Hash du password
+            $client->setPassword(
+                $passwordHasher->hashPassword(
+                    $client,
+                    $clientForm->get('plainPassword')->getData()
+                )
+            )
+                ->setRoles(['ROLE_CLIENT']);
+            // Envoi dans la base de donnée
             $em->persist($client);
             $em->flush();
             return $this->redirectToRoute('client');
