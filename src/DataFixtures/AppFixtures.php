@@ -20,6 +20,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        // Méthode chargée lors de l'execution de `symfony console doctrine:fixture:load`
         $faker = Factory::create("fr_FR");
         $this->vendeur($faker, $manager);
 
@@ -63,6 +64,7 @@ class AppFixtures extends Fixture
             $client = $this->client($faker, $manager);
             // Ajout de Commandes au Client
             for ($i = 0; $i < random_int(1, 5); $i++) {
+
                 $this->commande($faker, $manager, $client, $commerce);
             }
         }

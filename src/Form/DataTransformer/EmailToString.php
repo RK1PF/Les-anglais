@@ -22,7 +22,7 @@ class EmailToString implements DataTransformerInterface
     /**
      * Transforms an object (email) to a string.
      *
-     * @param  Email|null $email
+     * @param  Email $email
      */
     public function transform($email): string
     {
@@ -65,6 +65,7 @@ class EmailToString implements DataTransformerInterface
         } else {
             $email = new Email();
             $email->setEmail($emailString)->setClient($this->client);
+            // $this->client->setEmail($email);
             /*TODO: Création d'un nouvel email dans la base de données*/
         }
 
