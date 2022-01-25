@@ -16,14 +16,15 @@
     {% for association in associations %}
         <h4> {{association.nom}}</h4>
         <h3>
-            {{association.prenom_contact}} {{association.nom_contact}}<br>
+            {{association.prenom_contact}} 
+            {# {{association.nom_contact}}<br> #}
         </h3>
 
         <br>
         <a href="{{ path('afficheassociation', {'id':association.id}) }}">
         </a><br>
     {% if (is_granted('ROLE_ADMIN')) %}
-        <a href="{{ path('modifactor', {'id':association.id}) }}">MODIFIER</a><br>
+        <a href="{{ path('modifassociation', {'id':association.id}) }}">MODIFIER</a><br>
     {% endif %}
         <hr>
     {% endfor %}

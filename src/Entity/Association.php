@@ -22,10 +22,10 @@ class Association
     #[ORM\Column(type: 'string', length: 255)]
     private $prenom_contact;
 
-    #[ORM\OneToOne(mappedBy: 'association', targetEntity: Tel::class, cascade: ['persist', 'remove'])]
+    #[ORM\Column(type: 'bigint')]
     private $tel;
 
-    #[ORM\OneToOne(mappedBy: 'association', targetEntity: Email::class, cascade: ['persist', 'remove'])]
+    #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
     public function getId(): ?int
@@ -69,47 +69,30 @@ class Association
         return $this;
     }
 
-    public function getTel(): ?Tel
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setTel(?Tel $tel): self
+    public function setTel(string $tel): self
     {
-        // unset the owning side of the relation if necessary
-        if ($tel === null && $this->tel !== null) {
-            $this->tel->setAssociation(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($tel !== null && $tel->getAssociation() !== $this) {
-            $tel->setAssociation($this);
-        }
-
         $this->tel = $tel;
 
         return $this;
     }
 
-    public function getEmail(): ?Email
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(?Email $email): self
+    public function setEmail(string $email): self
     {
-        // unset the owning side of the relation if necessary
-        if ($email === null && $this->email !== null) {
-            $this->email->setAssociation(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($email !== null && $email->getAssociation() !== $this) {
-            $email->setAssociation($this);
-        }
-
         $this->email = $email;
 
         return $this;
     }
+
+
+
 }
