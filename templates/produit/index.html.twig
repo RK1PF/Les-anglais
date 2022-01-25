@@ -24,17 +24,22 @@
 		}
 	</style>
 	<section>
-		{% for p in produits %}
-			<div class="produit">
-				{% for ph in p.photoProduits %}
-					<a href="{{path('afficheproduit', {'id':p.id})}}"><img src="{{asset('images/' ~ ph.lien )}}"></a>
-				{% endfor %}
-				<h2>{{p.prix}}
-					€ |
-					{{p.stock}}
-					| Panier</h2>
+		{% if produits %}
+			{% for p in produits %}
+				<div class="produit">
+					{% for ph in p.photoProduits %}
+						<a href="{{path('afficheproduit', {'id':p.id})}}">
+						<img src="{{asset('images/' ~ ph.lien )}}">
+						</a>
+					{% endfor %}
+					<h2>{{p.prix}}€ | {{p.stock}} | Panier</h2>
+				</div>
+			{% endfor %}
+		{% else %}
+			<div>
+				<p>Il n'y à pour le moment aucun produit</p>
 			</div>
-		{% endfor %}
+		{% endif %}
 
 	</section>
 {% endblock %}

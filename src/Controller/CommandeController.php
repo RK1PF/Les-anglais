@@ -39,7 +39,6 @@ class CommandeController extends AbstractController
         ]);
     }
 
-
     #[Route('/factures', name: 'factures')]
     public function factures(CommandeRepository $cr, ProduitCommandeRepository $pcr, ProduitRepository $pr, $id): Response
     {
@@ -52,7 +51,6 @@ class CommandeController extends AbstractController
             "produit" => $produit
         ]);
     }
-
 
     #[Route('/paiement', name: 'paiement')]
     public function paiement(CommandeRepository $cr, $id): Response
