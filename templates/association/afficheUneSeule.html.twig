@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+g{% extends 'base.html.twig' %}
 
-{% block title %}Liste des Associations{% endblock %}
+{% block title %} Information de l'association : {{association.nom}}{% endblock %}
 
 {% block body %}
 <center>
-<h1 class="border border-dark rounded p-2 m-2 text-white bg-primary">Liste des Associations</h1>
+<h1 class="border border-dark rounded p-2 m-2 text-white bg-primary"> Information de l'association : {{association.nom}}</h1>
 </center>
 
 <style>
@@ -13,10 +13,11 @@
 </style>
 
 <div>
-    {% for association in associations %}
-        <h4> {{association.nom}}</h4>
+    <h4> {{association.nom}}</h4>
         <h3>
             {{association.prenom_contact}} {{association.nom_contact}}<br>
+            {{association.tel}}<br>
+            {{association.email}}
         </h3>
 
         <br>
@@ -26,7 +27,5 @@
         <a href="{{ path('modifactor', {'id':association.id}) }}">MODIFIER</a><br>
     {% endif %}
         <hr>
-    {% endfor %}
-</div>
 
 {% endblock %}
