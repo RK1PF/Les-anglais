@@ -1,48 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Changer un produit{% endblock %}
+{% block title %}Changer un produit
+{% endblock %}
 
 {% block body %}
-<style>
-    body {
-        text-align:center;
-    }
-    section {
-        width:900px;
-        margin-left: auto;
-        margin-right: auto;
-        border: solid #000;
-        display:inline-block;
-        padding: 4px;
+	<style>
+		body {
+			text-align: center;
+		}
+		section {
+			width: 900px;
+			margin-left: auto;
+			margin-right: auto;
+			border: solid #000;
+			display: inline-block;
+			padding: 4px;
 
-    }
+		}
 
-    .image {
-        width:50%;
-        float:left;
-    }
+		.image {
+			width: 50%;
+			float: left;
+		}
 
-    .description {
-        width:50%;
-        float:right;
-    }
-</style>
-{{form_start(form)}}
-<section><h1>Nom du produit : {{form_widget(form.nom)}}</h1>
-    
-    <div class="image">
-    {% for ph in produit.photoProduits %}
-    <img src="{{asset('images/' ~ ph.lien )}}">
-    {% endfor %}
-</div>
-    <div class="description">
-        <h2>Description</h2>
-        <p>{{form_widget(form.description)}}</p>
-        <h2>Prix : {{form_widget(form.prix)}} €</h2><h2>Stock : {{form_widget(form.stock)}}</h2>
-        {{form_widget(form)}}
+		.description {
+			width: 50%;
+			float: right;
+		}
+	</style>
+	{{form_start(form)}}
+	<section>
+		<h1>Nom du produit :
+			{{form_widget(form.nom)}}</h1>
 
-        <input type="submit" value="enregistrer"><a href="{{path('produit')}}"><button>Retour au magasin</button></a>
-</div>
-</section>
-{{form_end(form)}}
+		<div class="image">
+			{% for ph in produit.photoProduits %}
+				<img src="{{asset('images/' ~ ph.lien )}}">
+			{% endfor %}
+		</div>
+		<div class="description">
+			<h2>Description</h2>
+			<p>{{form_widget(form.description)}}</p>
+			<h2>Prix :
+				{{form_widget(form.prix)}}
+				€</h2>
+			<h2>Stock :
+				{{form_widget(form.stock)}}</h2>
+			{{form_widget(form)}}
+
+			<input type="submit" value="enregistrer"><a href="{{path('produit')}}">
+				<button>Retour au magasin</button>
+			</a>
+		</div>
+	</section>
+	{{form_end(form)}}
 {% endblock %}

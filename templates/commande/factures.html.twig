@@ -1,53 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des factures{% endblock %}
+{% block title %}Liste des factures
+{% endblock %}
 
 {% block body %}
-<style>
-    body {
-        text-align:center;
-        margin-left: auto;
-        margin-right: auto
-    }
-     
-    th {
-        border: 2px solid #000;
-        margin: 1px;
-    } 
+	<style>
+		body {
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto
+		}
+
+		th {
+			border: 2px solid #000;
+			margin: 1px;
+		}
 
 
-    tbody > tr {
-        border: 2px solid #000;
-        margin: 1px;
-    }
+		tbody > tr {
+			border: 2px solid #000;
+			margin: 1px;
+		}
 
-    #commande {
-        border: 1px solid #000;
-    }
-</style>
-<table>
-    <thead>
-        <tr><th>Numéro de commande</th>
-        <th>date de commande</th>
-        <th>Coordonnées du client</th>
-        <th>Total</th>
-        <th>date du retrait</th></tr>
-    </thead>
-    <tbody>
-    {% for c in commande %}
-        {% if c.statut=="retiré" %}
-            <a href="{{path('commande', {'id':c.id})}}"><tr id="ligne"><td id="commande">{{c.id}}</td>
-            <td>{{c.date_commande}}</td>
-            <td>{% for cl in client %}
-                {% if cl.id = c.client %}
-                    {{cl.prenom}} {{cl.nom}} {{cl.adresse}} {{cl.code_postal}} {{cl.ville}}
-                {% endif %}
-            {% endfor %}</td>
-            <td>{{c.prix_total}}</td>
-            <td>{{c.date_retrait}}</td>
-            </tr></a>
-        {% endif %}
-    {% endfor %}
-    </tbody>
-</table>
+		#commande {
+			border: 1px solid #000;
+		}
+	</style>
+	<table>
+		<thead>
+			<tr>
+				<th>Numéro de commande</th>
+				<th>date de commande</th>
+				<th>Coordonnées du client</th>
+				<th>Total</th>
+				<th>date du retrait</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for c in commande %}
+				{% if c.statut=="retiré" %}
+					<a href="{{path('commande', {'id':c.id})}}">
+						<tr id="ligne">
+							<td id="commande">{{c.id}}</td>
+							<td>{{c.date_commande}}</td>
+							<td>
+								{% for cl in client %}
+									{% if cl.id = c.client %}
+										{{cl.prenom}}
+										{{cl.nom}}
+										{{cl.adresse}}
+										{{cl.code_postal}}
+										{{cl.ville}}
+									{% endif %}
+								{% endfor %}
+							</td>
+							<td>{{c.prix_total}}</td>
+							<td>{{c.date_retrait}}</td>
+						</tr>
+					</a>
+				{% endif %}
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

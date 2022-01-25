@@ -1,51 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Produit
+{% endblock %}
 
 {% block body %}
 <style>
-    body {
-        text-align:center;
-    }
+	body {
+		text-align: center;
+	}
 
-    h1.titre {
-        border: 1px solid #000;
-        margin-left: auto;
-        margin-right: auto;
-    }
+	h1.titre {
+		border: 1px solid #000;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
-    table {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-
+	table {
+		margin-left: auto;
+		margin-right: auto;
+	}
 </style>
 <h1 class="titre">VOTRE PANIER</h1>
 <table>
-{% for pc in produitCommande %}
-    {% if produitCommande.commande==commande.id %}
-        {% set total=0 %}
-        {% for p in produit %}
-            {% if pc.produit==p.id %}
-                <tr><td>
-                    {% for ph in p.photoProduits %}
-                        <img src="{{asset('images/' ~ ph.lien )}}"></a>
-                    {% endfor %}</td>
-                    <td>{{p.nom}}</td>
-                    <td>{{pc.quantite}} | {{pc.prix}} €  | {% set total = total + pc.quantite * pc.prix %}  {{pc.quantite * pc.prix}} €</td>
-                </tr>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-{% endfor %}
-</table>
-<h2>PRIX TOTAL : {{total}} € </h2>
-<h2>(TVA ?)</h2>
-<h2>(Prix total + TVA)</h2>
-<button>Lien vers la boutique</button> <a href="{{path('paiement', {'id':c.id})}}"><button>PAYER</button></a> <button>ANNULER</button></div>
-
-<div>(géolocalisation GoogleMap)</div>
-
-{% endblock %}
+	{% for pc in produitCommande %}
+		{% if produitCommande.commande==commande.id %}
+			{% set total=0 %}
+			{% for p in produit %}
+				{% if pc.produit==p.id %}
+					<tr>
+						<td>
+							{% for ph in p.photoProduits %}
+								<img src="{{asset('images/' ~ ph.lien )}}"></a>
+						{% endfor %}
+					</tr>
+				</td>
+				<td>{{p.nom}}</td>
+				<td>{{pc.quantite}}
+					|
+					{{pc.prix}}
+					€  |
+					{% set total = total + pc.quantite * pc.prix %}
+					{{pc.quantite * pc.prix}}
+					€</td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+{% endif %}{% endfor %}</table><h2>PRIX TOTAL :{{total}}€</h2><h2>(TVA ?)</h2><h2>(Prix total + TVA)</h2><button>Lien vers la boutique</button><a href="{{path('paiement', {'id':c.id})}}"><button>PAYER</button></a><button>ANNULER</button></div><div>(géolocalisation GoogleMap)</div>{% endblock %}
