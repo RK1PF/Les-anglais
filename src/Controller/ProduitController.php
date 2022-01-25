@@ -49,7 +49,7 @@ class ProduitController extends AbstractController
             return $this->redirectToRoute('produit');
         }
         return $this->render('produit/modifProduit.html.twig', [
-            "produit"=>$produit, 
+            "produit"=>$produit,
             "form"=>$form->createView()
         ]);
     } */
