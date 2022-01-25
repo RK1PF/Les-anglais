@@ -25,6 +25,14 @@ class CommandeController extends AbstractController
         ]);
     }
 
+    #[Route('/commande_test', name: 'commande_test')]
+    public function index(): Response
+    {
+        return $this->render('commande/commande_test.html.twig', [
+            'controller_name' => 'CommandeController',
+        ]);
+    }
+
     #[Route('/factures', name: 'factures')]
     // public function index(): Response
 
@@ -39,6 +47,22 @@ class CommandeController extends AbstractController
     public function gestion_commande(): Response
     {
         return $this->render('commande/commande.html.twig', [
+            'controller_name' => 'CommandeController',
+        ]);
+    }
+
+    #[Route('/paiement', name: 'paiement')]
+    public function paiement(): Response
+    {
+        return $this->render('commande/paiement.html.twig', [
+            'controller_name' => 'CommandeController',
+        ]);
+    }
+
+    #[Route('/gestion_test', name: 'gestion_test')]
+    public function gestion_test(): Response
+    {
+        return $this->render('commande/gestion_test.html.twig', [
             'controller_name' => 'CommandeController',
         ]);
     }

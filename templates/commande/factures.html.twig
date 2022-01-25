@@ -1,46 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des commandes{% endblock %}
+{% block title %}Liste des factures{% endblock %}
 
 {% block body %}
 <style>
     body {
         text-align:center;
+        margin-left: auto;
+        margin-right: auto
     }
+     
+    th {
+        border: 2px solid #000;
+        margin: 1px;
+    } 
 
-    ul:first-child.li {
-        border: solid #000;
+
+    tbody > tr {
+        border: 2px solid #000;
+        margin: 1px;
     }
 
     #commande {
-        border: solid #000;
+        border: 1px solid #000;
     }
 </style>
 <table>
-<ul><li>Numéro de commande</li>
-<li>date</li>
-<li>Coordonnées clients</li>
-<li>Total</li>
-<li>ACTION / prévenir client de dispo</li>
-</ul>
-
-{% for c in commande %}
-    {% if c.statut=="retiré" %}
-    <a href="{{path('commande', {'id':c.id})}}"><ul id="commande"><li id="commande">{{c.id}}</li>
-    <li id="commande">{{c.date_commande}}</li>
-    <li>
-    {% for cl in client %}
-        {% if cl.id = c.client %}
-        {{cl.prenom}} {{cl.nom}} {{cl.adresse}} {{cl.code_postal}} {{cl.ville}}
+    <thead>
+        <tr><th>Numéro de commande</th>
+        <th>date de commande</th>
+        <th>Coordonnées du client</th>
+        <th>Total</th>
+        <th>date du retrait</th></tr>
+    </thead>
+    <tbody>
+    {% for c in commande %}
+        {% if c.statut=="retiré" %}
+            <a href="{{path('commande', {'id':c.id})}}"><tr id="ligne"><td id="commande">{{c.id}}</td>
+            <td>{{c.date_commande}}</td>
+            <td>{% for cl in client %}
+                {% if cl.id = c.client %}
+                    {{cl.prenom}} {{cl.nom}} {{cl.adresse}} {{cl.code_postal}} {{cl.ville}}
+                {% endif %}
+            {% endfor %}</td>
+            <td>{{c.prix_total}}</td>
+            <td>{{c.date_retrait}}</td>
+            </tr></a>
         {% endif %}
     {% endfor %}
-    </li>
-    <li>{{c.prix_total}}</li>
-    <li>{{c.date_retrait}}</li>
-    </ul></a>
-    {% endif %}
-{% endfor %}
-
+    </tbody>
 </table>
 {% endblock %}
-
