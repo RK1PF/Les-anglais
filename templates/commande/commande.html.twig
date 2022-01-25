@@ -8,48 +8,44 @@
         text-align:center;
     }
 
-    div.titre {
-        border: solid #000;
-    }
-
-    section {
-        width:900px;
+    h1.titre {
+        border: 1px solid #000;
         margin-left: auto;
         margin-right: auto;
-        border: solid #000;
-        display:inline-block;
-        padding: 4px;
-
     }
 
-    .produit {
-        width:50%;
-        float:left;
+    table {
+        margin-left: auto;
+        margin-right: auto;
     }
+
 
 
 </style>
-<div id="titre">VOTRE PANIER</div>
-<section>
+<h1 class="titre">VOTRE PANIER</h1>
+<table>
 {% for pc in produitCommande %}
     {% if produitCommande.commande==commande.id %}
-        <div class="produit">
+        {% set total=0 %}
         {% for p in produit %}
             {% if pc.produit==p.id %}
-                {% for ph in p.photoProduits %}
-                    <img src="{{asset('images/' ~ ph.lien )}}"></a>
-                {% endfor %}
-                <h2>{{p.nom}} | {{pc.quantite}} | {{pc.prix}} | {{pc.quantite * pc.prix}} €</h2>
-               {#  remplissage d'une liste avec sous_total+=pc.quantite*pc.prix et total+=pc.quantite*pc.prix*tva #}
+                <tr><td>
+                    {% for ph in p.photoProduits %}
+                        <img src="{{asset('images/' ~ ph.lien )}}"></a>
+                    {% endfor %}</td>
+                    <td>{{p.nom}}</td>
+                    <td>{{pc.quantite}} | {{pc.prix}} €  | {% set total = total + pc.quantite * pc.prix %}  {{pc.quantite * pc.prix}} €</td>
+                </tr>
             {% endif %}
         {% endfor %}
-        </div>
-
     {% endif %}
 {% endfor %}
-</section>
-<div>sous-total | TVA | total <br/>
-<button>Retour à la boutique</button> <button>PAYER</button> <button>ANNULER</button></div>
+</table>
+<h2>PRIX TOTAL : {{total}} € </h2>
+<h2>(TVA ?)</h2>
+<h2>(Prix total + TVA)</h2>
+<button>Lien vers la boutique</button> <a href="{{path('paiement', {'id':c.id})}}"><button>PAYER</button></a> <button>ANNULER</button></div>
+
+<div>(géolocalisation GoogleMap)</div>
 
 {% endblock %}
-
