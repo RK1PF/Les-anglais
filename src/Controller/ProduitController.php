@@ -20,7 +20,7 @@ class ProduitController extends AbstractController
     #[Route('/produit', name: 'produit')]
     public function index(ProduitRepository $repository): Response
     {
-        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        // $repository = $this->getDoctrine()->getRepository(Produit::class);
         $produit = $repository->findAll();
         return $this->render('produit/index.html.twig', [
                 'produit' => $produit,
