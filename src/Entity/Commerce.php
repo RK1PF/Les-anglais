@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommerceRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CommerceRepository::class)]
@@ -39,6 +41,14 @@ class Commerce
 
     #[ORM\OneToOne(mappedBy: 'commerce', targetEntity: Vendeur::class, cascade: ['persist', 'remove'])]
     private $vendeur;
+
+    #[ORM\OneToMany(mappedBy: 'commerce', targetEntity: Commande::class, orphanRemoval: true)]
+    private $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +164,36 @@ class Commerce
         }
 
         $this->vendeur = $vendeur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Commande[]
+     */
+    public function getCommandes(): Collection
+    {
+        return $this->commandes;
+    }
+
+    public function addCommande(Commande $commande): self
+    {
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes[] = $commande;
+            $commande->setCommerce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            // set the owning side to null (unless already changed)
+            if ($commande->getCommerce() === $this) {
+                $commande->setCommerce(null);
+            }
+        }
 
         return $this;
     }
