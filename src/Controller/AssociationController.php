@@ -27,7 +27,7 @@ class AssociationController extends AbstractController
     #[Route("/afficheassociation/{id}", name: "afficheassociation")]
     public function afficherUneAssociation(Association $association): Response
     {
-        return $this->render('association/afficherUneSeule.html.twig', ['association' => $association]);
+        return $this->render('association/afficheUneSeule.html.twig', ['association' => $association]);
     }
 
     #[Route("/creationassociation", name: "creationassociation")]

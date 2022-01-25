@@ -17,10 +17,12 @@ class Association
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nom_contact;
+    private $nomContact;
+    // private $nom_contact;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $prenom_contact;
+    private $prenomContact;
+    // private $prenom_contact;
 
     #[ORM\Column(type: 'bigint')]
     private $tel;
@@ -47,25 +49,28 @@ class Association
 
     public function getNomContact(): ?string
     {
-        return $this->nom_contact;
+        return $this->nomContact;
+        // return $this->nom_contact;
     }
 
-    public function setNomContact(string $nom_contact): self
+    public function setNomContact(string $nomContact): self
     {
-        $this->nom_contact = $nom_contact;
+        $this->nomContact = $nomContact;
+        // $this->nom_contact = $nom_contact;
 
         return $this;
     }
 
     public function getPrenomContact(): ?string
     {
-        return $this->prenom_contact;
+        return $this->prenomContact;
+        // return $this->prenom_contact;
     }
 
-    public function setPrenomContact(string $prenom_contact): self
+    public function setPrenomContact(string $prenomContact): self
     {
-        $this->prenom_contact = $prenom_contact;
-
+        $this->prenomContact = $prenomContact;
+        // $this->prenom_contact = $prenom_contact;
         return $this;
     }
 
