@@ -4,34 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		body {
-			text-align: center;
-		}
-		section {
-			width: 900px;
-			margin-left: auto;
-			margin-right: auto;
-			border: solid #000;
-			display: inline-block;
-			padding: 4px;
-
-		}
-
-		.image {
-			width: 50%;
-			float: left;
-		}
-
-		.description {
-			width: 50%;
-			float: right;
-		}
-	</style>
 	{{form_start(form)}}
 	<section>
-		<h1>Nom du produit :
-			{{form_widget(form.nom)}}</h1>
+		<h1>Nom du produit :{{form_widget(form.nom)}}</h1>
 
 		<div class="image">
 			{% for ph in produit.photoProduits %}
@@ -48,10 +23,11 @@
 				{{form_widget(form.stock)}}</h2>
 			{{form_widget(form)}}
 
-			<input type="submit" value="enregistrer"><a href="{{path('produit')}}">
-				<button>Retour au magasin</button>
+			<input type="submit" value="enregistrer">
+			{{form_end(form)}}
+			<a href="{{path('produit')}}" class="btn btn-light btn-block">
+				Retour au magasin
 			</a>
 		</div>
 	</section>
-	{{form_end(form)}}
 {% endblock %}

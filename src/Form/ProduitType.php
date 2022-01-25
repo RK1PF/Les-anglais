@@ -19,7 +19,7 @@ class ProduitType extends AbstractType
             ->add('nom')
             ->add('stock')
             ->add('description',   TextareaType::class)
-            ->add('date_ajout')
+            // ->add('date_ajout')
             ->add('prix')
             ->add('categories')
             ->add('tags')
