@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Client;
+use App\Form\TestingSubmit;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class TestingController extends AbstractController
 {
@@ -56,6 +61,34 @@ class TestingController extends AbstractController
         return $this->render('testing/show.html.twig', [
             'question' => $question,
             'answers' => $answers
+        ]);
+    }
+
+    #[Route(path:'/test/submit', name: 'test-submit')]
+    public function testSubmit(?Client $client, Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher)
+    {$client = new Client();
+
+        $clientForm = $this->createForm(TestingSubmit::class, $client);
+
+        $clientForm->handleRequest($request);
+        if ($clientForm->isSubmitted() && $clientForm->isValid()) {
+            // Hash du password
+            $client->setPassword(
+                $passwordHasher->hashPassword(
+                    $client,
+                    $clientForm->get('plainPassword')->getData()
+                )
+            )
+                ->setRoles(['ROLE_CLIENT']);
+            // Envoi dans la base de donnée
+            $em->persist($client);
+            $em->flush();
+            return $this->redirectToRoute('client');
+        }
+        return $this->render('testing/submit.html.twig', [
+            'controller_name' => 'TestingController',
+            'client' => $client,
+            'testingForm' => $clientForm->createView(),
         ]);
     }
 }
