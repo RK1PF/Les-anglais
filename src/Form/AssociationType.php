@@ -16,12 +16,32 @@ class AssociationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class,['label' => "Nom de l'Association : "])
-            ->add('prenom_contact', TextType::class,['label' => "Responsable - Prénom : "])
-            ->add('nom_contact', TextType::class,['label' => "Responsable - Nom : "])
-            ->add('tel', NumberType::class,['label' => "Téléphone : "])
-            ->add('email', EmailType::class, ['label' => "Email : "])
-            ->add('Enregistrer', SubmitType::class) ⁡⁢⁣⁢// PENSER A CHANGER LE BOUTON DE PLACE !!!!⁡
+            ->add(
+                'nom',
+                TextType::class,
+                ['label' => "Nom de l'Association : "]
+            )
+            ->add(
+                'prenom_contact',
+                TextType::class,
+                ['label' => "Responsable - Prénom : "]
+            )
+            ->add(
+                'nom_contact',
+                TextType::class,
+                ['label' => "Responsable - Nom : "]
+            )
+            ->add(
+                'tel',
+                NumberType::class,
+                ['label' => "Téléphone : "]
+            )
+            ->add(
+                'email',
+                EmailType::class,
+                ['label' => "Email : "]
+            )
+            ->add('Enregistrer', SubmitType::class) // PENSER A CHANGER LE BOUTON DE PLACE !!!!⁡
         ;
     }
 
