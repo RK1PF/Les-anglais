@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Testing | Question
+{% endblock %}
+
+{% block body %}
+	<h1>La question du moment</h1>
+	<p>{{question}}
+		?</p>
+	<h2>Réponses</h2>
+	<ul>
+		{% for i in answers %}
+			<li>
+				<p>{{i}}</p>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

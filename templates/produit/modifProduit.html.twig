@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Changer un produit
+{% endblock %}
+
+{% block body %}
+	{{form_start(form)}}
+	<section>
+		<h1>Nom du produit :{{form_widget(form.nom)}}</h1>
+
+		<div class="image">
+			{% for ph in produit.photoProduits %}
+				<img src="{{asset('images/' ~ ph.lien )}}">
+			{% endfor %}
+		</div>
+		<div class="description">
+			<h2>Description</h2>
+			<p>{{form_widget(form.description)}}</p>
+			<h2>Prix :
+				{{form_widget(form.prix)}}
+				€</h2>
+			<h2>Stock :
+				{{form_widget(form.stock)}}</h2>
+			{{form_widget(form)}}
+
+			<input type="submit" value="enregistrer">
+			{{form_end(form)}}
+			<a href="{{path('produit')}}" class="btn btn-light btn-block">
+				Retour au magasin
+			</a>
+		</div>
+	</section>
+{% endblock %}
