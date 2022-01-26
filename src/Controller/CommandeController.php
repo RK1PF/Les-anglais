@@ -60,4 +60,13 @@ class CommandeController extends AbstractController
             "commande" => $commande
         ]);
     }
+
+    #[Route('/commande_test', name: 'commande_test')]
+    public function commande_test(): Response
+    {
+        return $this->render('commande/commande_test.html.twig', [
+            "controller_name" => "CommandeController"
+        ]);
+    }
+
 }
