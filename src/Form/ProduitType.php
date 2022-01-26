@@ -24,15 +24,15 @@ class ProduitType extends AbstractType
             ->add('categories')
             ->add('tags')
             ->add('photoProduit', EntityType::class, [
-                'mapped'=>false,
-                'multiple'=>true,
-                'class'=>PhotoProduit::class,
-                'choice_label'=>'lien',
-                'label'=>'Choose photo'
+                'mapped' => false,
+                'multiple' => true,
+                'class' => PhotoProduit::class,
+                'choice_label' => 'lien',
+                'label' => 'Choose photo',
+                'required' => false
                 // 'choice_label'=>'produit_id',
                 // 'choice_label'=>'date_ajout'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
