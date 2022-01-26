@@ -25,9 +25,14 @@ class Commande
     #[ORM\JoinColumn(nullable: false)]
     private $client;
 
-    #[ORM\ManyToOne(targetEntity: Commerce::class, inversedBy: 'commandes')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $commerce;
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $prix_total;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $statut;
+
+    #[ORM\Column(type: 'date', nullable: true)]
+    private $date_retrait;
 
     public function __construct()
     {
@@ -93,14 +98,38 @@ class Commande
         return $this;
     }
 
-    public function getCommerce(): ?Commerce
+    public function getPrixTotal(): ?float
     {
-        return $this->commerce;
+        return $this->prix_total;
     }
 
-    public function setCommerce(?Commerce $commerce): self
+    public function setPrixTotal(?float $prix_total): self
     {
-        $this->commerce = $commerce;
+        $this->prix_total = $prix_total;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getDateRetrait(): ?\DateTimeInterface
+    {
+        return $this->date_retrait;
+    }
+
+    public function setDateRetrait(?\DateTimeInterface $date_retrait): self
+    {
+        $this->date_retrait = $date_retrait;
 
         return $this;
     }

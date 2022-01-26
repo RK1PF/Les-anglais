@@ -33,20 +33,19 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: PhotoProduit::class, orphanRemoval: true)]
     private $photoProduits;
 
-    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: PrixProduit::class, orphanRemoval: true)]
-    private $prixProduits;
-
     #[ORM\ManyToMany(targetEntity: Tags::class, mappedBy: 'produit')]
     private $tags;
 
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: ProduitCommande::class, orphanRemoval: true)]
     private $produitCommandes;
 
+    #[ORM\Column(type: 'float')]
+    private $prix;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->photoProduits = new ArrayCollection();
-        $this->prixProduits = new ArrayCollection();
         $this->tags = new ArrayCollection();
         $this->produitCommandes = new ArrayCollection();
     }
@@ -162,36 +161,6 @@ class Produit
     }
 
     /**
-     * @return Collection|PrixProduit[]
-     */
-    public function getPrixProduits(): Collection
-    {
-        return $this->prixProduits;
-    }
-
-    public function addPrixProduit(PrixProduit $prixProduit): self
-    {
-        if (!$this->prixProduits->contains($prixProduit)) {
-            $this->prixProduits[] = $prixProduit;
-            $prixProduit->setProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removePrixProduit(PrixProduit $prixProduit): self
-    {
-        if ($this->prixProduits->removeElement($prixProduit)) {
-            // set the owning side to null (unless already changed)
-            if ($prixProduit->getProduit() === $this) {
-                $prixProduit->setProduit(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Tags[]
      */
     public function getTags(): Collection
@@ -244,6 +213,18 @@ class Produit
                 $produitCommande->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

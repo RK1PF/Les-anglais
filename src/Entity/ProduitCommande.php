@@ -21,6 +21,9 @@ class ProduitCommande
     #[ORM\JoinColumn(nullable: false)]
     private $commande;
 
+    #[ORM\Column(type: 'float')]
+    private $prix;
+
     #[ORM\Column(type: 'integer')]
     private $quantite;
 
@@ -49,6 +52,18 @@ class ProduitCommande
     public function setCommande(?Commande $commande): self
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

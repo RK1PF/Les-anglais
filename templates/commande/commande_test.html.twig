@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit
+{% endblock %}
+
+{% block body %}
+	<style>
+		body {
+			text-align: center;
+		}
+
+		h1.titre {
+			border: 1px solid #000;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		table {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+	<h1 class="titre">VOTRE PANIER</h1>
+	<table>
+		<tr>
+			<td>IMAGE</td>
+			<td>NOM</td>
+			<td>{% set quantite1=5 %}
+				{{quantite1}}
+				|
+				{% set prix1=10 %}
+				{{prix1}}
+				€  |
+				{% set total = quantite1 * prix1 %}
+				{{ quantite1 * prix1 }}
+				€</td>
+		</tr>
+		<tr>
+			<td>IMAGE2</td>
+			<td>NOM2</td>
+			<td>{% set quantite2=10 %}
+				{{quantite2}}
+				|
+				{% set prix2=7 %}
+				{{prix2}}
+				€  |
+				{% set total = total + quantite2 * prix2 %}
+				{{ quantite2 * prix2 }}
+				€</td>
+		</tr>
+	</table>
+	<h2>PRIX TOTAL :
+		{{total}}
+		€
+	</h2>
+	<h2></h2>
+	<h2></h2>
+	<button>Lien vers la boutique</button>
+	<a href="{{path('paiement')}}">
+		<button>PAYER</button>
+	</a>
+	<button>ANNULER</button>
+</div>
+
+<div>(géolocalisation GoogleMap)</div>{% endblock %}

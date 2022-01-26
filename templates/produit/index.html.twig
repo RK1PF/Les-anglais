@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit
+{% endblock %}
+
+{% block body %}
+	<section>
+		{% if produits %}
+			{% for p in produits %}
+				<div class="produit">
+					{% for ph in p.photoProduits %}
+						<a href="{{path('afficheproduit', {'id':p.id})}}">
+						<img src="{{asset('images/' ~ ph.lien )}}">
+						</a>
+					{% endfor %}
+					<h2>{{p.prix}}€ | {{p.stock}} | Panier</h2>
+				</div>
+			{% endfor %}
+		{% else %}
+			<div>
+				<p>Il n'y à pour le moment aucun produit (ajoutez manuellement dans la bdd, sans oublier d'ajouter une photoProduits avec l'idProduit correspondant)</p>
+			</div>
+		{% endif %}
+	</section>
+{% endblock %}

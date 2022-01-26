@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit
+{% endblock %}
+
+{% block body %}
+	<section>
+		<h1>{{produit.nom}}</h1>
+		<div class="image">
+			{% for ph in produit.photoProduits %}
+				<img src="{{asset('images/' ~ ph.lien )}}">
+			{% endfor %}
+		</div>
+		<div class="description">
+			<p>Description :
+				<br/>
+				{{produit.description}}
+			</p>
+			<h2>Prix :
+				{{produit.prix}}
+				€</h2>
+			<h2>Stock disponible :
+				{{produit.stock}}</h2>
+			<button>Achat</button>
+			<a href="{{path('produit')}}">
+				<button>Retour au magasin</button>
+			</a>
+		</div>
+	</section>
+{% endblock %}
