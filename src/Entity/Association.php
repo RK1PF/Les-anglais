@@ -17,15 +17,17 @@ class Association
     private $nom;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nom_contact;
+    private $nomContact;
+    // private $nom_contact;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $prenom_contact;
+    private $prenomContact;
+    // private $prenom_contact;
 
-    #[ORM\OneToOne(mappedBy: 'association', targetEntity: Tel::class, cascade: ['persist', 'remove'])]
+    #[ORM\Column(type: 'bigint')]
     private $tel;
 
-    #[ORM\OneToOne(mappedBy: 'association', targetEntity: Email::class, cascade: ['persist', 'remove'])]
+    #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
     public function getId(): ?int
@@ -47,69 +49,55 @@ class Association
 
     public function getNomContact(): ?string
     {
-        return $this->nom_contact;
+        return $this->nomContact;
+        // return $this->nom_contact;
     }
 
-    public function setNomContact(string $nom_contact): self
+    public function setNomContact(string $nomContact): self
     {
-        $this->nom_contact = $nom_contact;
+        $this->nomContact = $nomContact;
+        // $this->nom_contact = $nom_contact;
 
         return $this;
     }
 
     public function getPrenomContact(): ?string
     {
-        return $this->prenom_contact;
+        return $this->prenomContact;
+        // return $this->prenom_contact;
     }
 
-    public function setPrenomContact(string $prenom_contact): self
+    public function setPrenomContact(string $prenomContact): self
     {
-        $this->prenom_contact = $prenom_contact;
-
+        $this->prenomContact = $prenomContact;
+        // $this->prenom_contact = $prenom_contact;
         return $this;
     }
 
-    public function getTel(): ?Tel
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setTel(?Tel $tel): self
+    public function setTel(string $tel): self
     {
-        // unset the owning side of the relation if necessary
-        if ($tel === null && $this->tel !== null) {
-            $this->tel->setAssociation(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($tel !== null && $tel->getAssociation() !== $this) {
-            $tel->setAssociation($this);
-        }
-
         $this->tel = $tel;
 
         return $this;
     }
 
-    public function getEmail(): ?Email
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(?Email $email): self
+    public function setEmail(string $email): self
     {
-        // unset the owning side of the relation if necessary
-        if ($email === null && $this->email !== null) {
-            $this->email->setAssociation(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($email !== null && $email->getAssociation() !== $this) {
-            $email->setAssociation($this);
-        }
-
         $this->email = $email;
 
         return $this;
     }
+
+
+
 }
