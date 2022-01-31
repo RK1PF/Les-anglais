@@ -14,10 +14,9 @@
 
     {% for association in associations %}
         <h2> {{ association.nom }} </h2>
-        
+
         <br>
-        <a href="{{ path('afficheassociation', {'id':association.id}) }}">
-        DETAILS
+        <a href="{{ path('afficheassociation', {'id':association.id}) }}">DETAILS
         {# <img src="{{asset('#') }}" style="width:200px"> #}
         </a><br>
 

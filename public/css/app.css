@@ -76,52 +76,56 @@ body {
     color: #FF4136;
 }
 
-.btn-question { 
-  color: #FFFFFF; 
-  background-color: #ED7458; 
-  border-color: #D45B3F; 
-} 
- 
-.btn-question:hover, 
-.btn-question:focus, 
-.btn-question:active, 
-.btn-question.active, 
-.open .dropdown-toggle.btn-question { 
-  color: #FFFFFF; 
-  background-color: #D45B3F; 
-  border-color: #D45B3F; 
-} 
- 
-.btn-question:active, 
-.btn-question.active, 
-.open .dropdown-toggle.btn-question { 
-  background-image: none; 
-} 
- 
-.btn-question.disabled, 
-.btn-question[disabled], 
-fieldset[disabled] .btn-question, 
-.btn-question.disabled:hover, 
-.btn-question[disabled]:hover, 
-fieldset[disabled] .btn-question:hover, 
-.btn-question.disabled:focus, 
-.btn-question[disabled]:focus, 
-fieldset[disabled] .btn-question:focus, 
-.btn-question.disabled:active, 
-.btn-question[disabled]:active, 
-fieldset[disabled] .btn-question:active, 
-.btn-question.disabled.active, 
-.btn-question[disabled].active, 
-fieldset[disabled] .btn-question.active { 
-  background-color: #ED7458; 
-  border-color: #D45B3F; 
-} 
- 
-.btn-question .badge { 
-  color: #ED7458; 
-  background-color: #FFFFFF; 
+.btn-question {
+  color: #FFFFFF;
+  background-color: #ED7458;
+  border-color: #D45B3F;
+}
+
+.btn-question:hover,
+.btn-question:focus,
+.btn-question:active,
+.btn-question.active,
+.open .dropdown-toggle.btn-question {
+  color: #FFFFFF;
+  background-color: #D45B3F;
+  border-color: #D45B3F;
+}
+
+.btn-question:active,
+.btn-question.active,
+.open .dropdown-toggle.btn-question {
+  background-image: none;
+}
+
+.btn-question.disabled,
+.btn-question[disabled],
+fieldset[disabled] .btn-question,
+.btn-question.disabled:hover,
+.btn-question[disabled]:hover,
+fieldset[disabled] .btn-question:hover,
+.btn-question.disabled:focus,
+.btn-question[disabled]:focus,
+fieldset[disabled] .btn-question:focus,
+.btn-question.disabled:active,
+.btn-question[disabled]:active,
+fieldset[disabled] .btn-question:active,
+.btn-question.disabled.active,
+.btn-question[disabled].active,
+fieldset[disabled] .btn-question.active {
+  background-color: #ED7458;
+  border-color: #D45B3F;
+}
+
+.btn-question .badge {
+  color: #ED7458;
+  background-color: #FFFFFF;
 }
 
 footer {
     background-color: #efefee;
+}
+
+li {
+    list-style: none;
 }

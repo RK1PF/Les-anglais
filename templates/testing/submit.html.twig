@@ -19,16 +19,13 @@
     {{form_row(testingForm.Enregistrer)}}
 
     <p>Ici dans mon Form "Nom" n'est pas un bouton, j'ai simplement modifié son style en appliquant une classe Bootstrap dans le twig</p>
-    {# Dans l'ordre que l'on souhaites, et le style que l'on modifie ici #}
-    {{form_row(testingForm.nom, { 'attr': {'class': 'btn btn-danger'} })}} 
+    {# Dans l'ordre que l'on souhaite et le style que l'on modifie ici #}
+    {{form_row(testingForm.nom, { 'attr': {'class': 'btn btn-danger'} })}}
 
-    
     {# Nous pouvons appeler un élément précis du Form avec form_row() #}
     {{form_row(testingForm.Testing)}}
     {# {{form_end(testingForm)}} #}
-
 </div>
-    
-    
+
 </div>
 {% endblock %}

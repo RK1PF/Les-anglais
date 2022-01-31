@@ -97,7 +97,4 @@ class Association
 
         return $this;
     }
-
-
-
 }
