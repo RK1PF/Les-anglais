@@ -12,9 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route("/association")]
+
 class AssociationController extends AbstractController
 {
-     #[Route("/association", name: "association")]
+     #[Route("/", name: "association")]
 
     public function index(AssociationRepository $repository): Response
     {
