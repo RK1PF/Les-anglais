@@ -2,24 +2,26 @@
 
 {% block title %}Liste des Associations{% endblock %}
 
-
 {% block body %}
 <center>
     <h1 class="border border-dark rounded p-2 m-2 text-white bg-primary">Liste des Associations</h1>
     <br>
+    <container>
     {% for association in associations %}
         <table>
-            <td>
+            <td class="asso1">
                 <h4 class="font-weight-bold">{{ association.nom }}</h4><br>
                 <h5>Responsable : {{association.prenomContact}} {{association.nomContact}}</h5>
             </td>
-            <td>
+            <td class="asso2">
                 <a>Téléphone : {{association.tel}}<br>
                 <a>Mail : </a>
-                <a class="btn btn-outline-dark" href={{association.email}}>{{association.email}}</a>
+                <a class="btn btn-outline-primary" href={{association.email}}>{{association.email}}</a>
             </td>
-            <td>
-                <a class="btn btn-outline-dark" href="{{ path('afficheassociation', {'id':association.id}) }}">DETAILS
+            <td class="asso3">
+                <a class="btn btn-outline-dark" href="{{ path('afficheassociation', {'id':association.id}) }}">DETAILS</a>&nbsp &nbsp
+                <a class="btn btn-outline-dark" href="{{ path('afficheassociation', {'id':association.id}) }}">MODIFIER</a>&nbsp &nbsp
+                <a class="btn btn-outline-dark" href="{{ path('afficheassociation', {'id':association.id}) }}">SUPPRIMER</a>
             </td>
             {# <img src="{{asset('#') }}" style="width:200px"> #}
             </a><br>
@@ -30,8 +32,9 @@
         </table>
         <hr>
     {% endfor %}
-
-    <a class="btn btn-outline-dark" href="{{ path('creationassociation') }}">AJOUTER UNE ASSOCIATION</a>
-
+<div class="ajout">
+    <a class="btn btn-outline-danger"  href="{{ path('creationassociation') }}">AJOUTER UNE ASSOCIATION</a>
+</div>
+</container>
 </center>
 {% endblock %}

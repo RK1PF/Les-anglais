@@ -1,13 +1,38 @@
 table {
-    width: 70%;
+    width: 90%;
     text-align: center;
-    }
+    /* border: 1px solid black; */
+    margin: 0 50px 0 50px;
+}
 
 td {
-        width : 33%;
-        text-align: center;
+    padding: 20px;
+}
+
+td.asso1 {
+    text-align: center;
+    width: 30%;
+    margin-right: 20px;
     }
-div {
-        width: 85%;
-        text-align: center;
+
+td.asso2 {
+    text-align: center;
+    width: 30%;
     }
+
+td.asso3 {
+    text-align: center;
+    width: 20%;
+    }
+
+div.form {
+    padding: 10px;
+    margin-right: 100px;
+    width: 60%;
+    text-align: right;
+    }
+
+.ajout {
+    text-align: right;
+    margin-right: 250px; 
+}

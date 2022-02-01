@@ -8,7 +8,7 @@
 <hr><hr>
 <style>
 </style>
-
+<container>
 <div>
     <h3> {{association.nom}}</h3>
         <h4>
@@ -31,5 +31,6 @@
         <a class="btn btn-outline-dark" href="{{ path('modifassociation', {'id':association.id}) }}">MODIFIER</a><br>
     {% endif %}
         <hr>
+    </container>
 </center>
 {% endblock %}
