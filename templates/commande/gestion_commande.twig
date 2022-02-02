@@ -57,6 +57,7 @@
 							<td>
 								{% if c.date_retrait is null %}
 									<button>Choisir la date de fin de disponibilité</button>
+									    {# <input type="date" /> #}
 									{# If c.date_retrait=date aujourd'hui + 1 => don associatif et c.statut="retire" #}
 								{% else %}
 									{{c.date_retrait}}

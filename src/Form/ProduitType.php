@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Categorie;
 use App\Entity\Produit;
+use App\Entity\Tags;
 use App\Entity\PhotoProduit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,8 +23,22 @@ class ProduitType extends AbstractType
             ->add('description',   TextareaType::class)
             // ->add('date_ajout')
             ->add('prix')
-            ->add('categories')
-            ->add('tags')
+            ->add('categories', EntityType::class, [
+                'mapped' => false,
+                'multiple' => true,
+                'class' => Categorie::class,
+                'choice_label' => 'nom',
+                'label' => 'CHoississez une catégorie',
+                'required' => false
+            ])    
+            ->add('tags', EntityType::class, [
+                'mapped' => false,
+                'multiple' => true,
+                'class' => Tags::class,
+                'choice_label' => 'libelle',
+                'label' => 'tags',
+                'required' => false
+            ])
             ->add('photoProduit', EntityType::class, [
                 'mapped' => false,
                 'multiple' => true,
