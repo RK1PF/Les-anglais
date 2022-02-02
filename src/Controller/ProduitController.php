@@ -11,7 +11,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ProduitRepository;
 use App\Entity\Produit;
 use App\Form\ProduitType;
-use App\Entity\CategoryType;
 use DateTime;
 
 class ProduitController extends AbstractController
