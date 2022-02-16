@@ -1,19 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit
-{% endblock %}
+{% block title %}Commerce{% endblock %}
 
 {% block body %}
+<style>
+section {
+    text-align : center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
 	<section>
+
 	<div>
-		<h1>IMAGE</h1>
-		<h1>
+        <img src="{{asset('images/logo_test.jpg' )}}"><br/>
+		<span style="display: inline-block; background: grey"><p>Option</p><h1>NOM COMMERCE</h1></span>
+		<p>Description</p>
+        <p>Adresse<br/>Code postal Ville</p>
+	    <p>Catégorie</p>
 	</div>
-	<div>
-	<h2>Catégorie</h2>
-	</div>
-	<div><h1>Produits</h1></div>
+	<div><img src="{{asset('images/ajoutproduit.jpg' )}}"></div>
+	<button>GESTION COMMANDES</button>
+	<button>ENREGISTRER</button>
 	</section>
-	<button>Gestions commande</button>
-	<button>enregistrer</button>
+
 {% endblock %}
