@@ -1,20 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VendeurController!{% endblock %}
+{% block title %}Commerce{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+section {
+    text-align : center;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
+	<section>
+	<div>
+        <img src="{{asset('images/logo_test.jpg' )}}">
+		<h1>NOM COMMERCE</h1>
+		<p>Description</p>
+        <p>Adresse<br/>Code postal Ville</p>
+	    <p>Catégorie</p>
+	</div>
+	<div><h1>Afficher les produits</h1></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.717842290038!2d2.3352748159035768!3d48.88265520695157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e45c7d2be55%3A0x27f567db498820b5!2s22%20Bd%20de%20Clichy%2C%2075018%20Paris!5e0!3m2!1sfr!2sfr!4v1643211034960!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	</section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/anglais/src/Controller/VendeurController.php'|file_link(0) }}">src/Controller/VendeurController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/anglais/templates/vendeur/index.html.twig'|file_link(0) }}">templates/vendeur/index.html.twig</a></code></li>
-    </ul>
-</div>
 {% endblock %}
