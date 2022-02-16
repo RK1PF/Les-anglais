@@ -5,30 +5,15 @@
 
 {% block body %}
 	<section>
-        <div>
-        <img src="{{asset('images/' ~ commerce.logo )}}">
-        <h1>{{commerce.nom}}</h1>
-        <h2>{{commerce.description}}</h2>
-        <h2>{{commerce.adresse}}
-        </div>
+	{{form_start(form)}}
+	<div>
+		
+	</div>
+	<div></div>
+	<div></div>
 
-
-
-		{% if produits %}
-			{% for p in produits %}
-				<div class="produit">
-					{% for ph in p.photoProduits %}
-						<a href="{{path('afficheproduit', {'id':p.id})}}">
-						<img src="{{asset('images/' ~ ph.lien )}}">
-						</a>
-					{% endfor %}
-					<h2>{{p.prix}}€ | {{p.stock}} | Panier</h2>
-				</div>
-			{% endfor %}
-		{% else %}
-			<div>
-				<p>Il n'y à pour le moment aucun produit (ajoutez manuellement dans la bdd, sans oublier d'ajouter une photoProduits avec l'idProduit correspondant)</p>
-			</div>
-		{% endif %}
+	{{form_end(form)}}
 	</section>
+	<button>Gestions commande</button>
+	<button>enregistrer</button>
 {% endblock %}
