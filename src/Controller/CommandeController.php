@@ -14,11 +14,11 @@ use App\Repository\ProduitRepository;
 class CommandeController extends AbstractController
 {
     #[Route('/gestion_commande', name: 'gestion_commande')]
-    public function index(CommandeRepository $cr, ProduitCommandeRepository $pcr, ProduitRepository $pr, $id): Response
+    public function index(CommandeRepository $cr, ProduitCommandeRepository $pcr, ProduitRepository $pr): Response
     {
-        $commande = $cr->find($id);
-        $produitCommande = $pcr->find($id);
-        $produit = $pr->find($id);
+        $commande = $cr->findAll();
+        $produitCommande = $pcr->findAll();
+        $produit = $pr->findAll();
         return $this->render('commande/commande.html.twig', [
             "commande" => $commande,
             "produitcommande" => $produitCommande,
@@ -40,11 +40,11 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/factures', name: 'factures')]
-    public function factures(CommandeRepository $cr, ProduitCommandeRepository $pcr, ProduitRepository $pr, $id): Response
+    public function factures(CommandeRepository $cr, ProduitCommandeRepository $pcr, ProduitRepository $pr): Response
     {
-        $commande = $cr->find($id);
-        $produitCommande = $pcr->find($id);
-        $produit = $pr->find($id);
+        $commande = $cr->findAll();
+        $produitCommande = $pcr->findAll();
+        $produit = $pr->findAll();
         return $this->render('commande/commande.html.twig', [
             "commande" => $commande,
             "produitcommande" => $produitCommande,
