@@ -15,4 +15,12 @@ class VendeurController extends AbstractController
             'controller_name' => 'VendeurController',
         ]);
     }
+
+    #[Route('/modifier_commerce', name: 'modifier_commerce')]
+    public function modifier_commerce(): Response
+    {
+        return $this->render('vendeur/modifier_commerce.html.twig', [
+            'controller_name' => 'VendeurController',
+        ]);
+    }
 }
